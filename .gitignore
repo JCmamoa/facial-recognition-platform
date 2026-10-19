@@ -1,0 +1,80 @@
+# ==========================================
+# Maven & Build Artifacts
+# ==========================================
+target/
+**/target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# ==========================================
+# Large Binary Files (> 100MB blocked by GitHub)
+# ==========================================
+bin/*.jar
+*.jar
+*.war
+*.ear
+*.rar
+
+# Ensure ONNX models and XML cascades are preserved
+!models/*.onnx
+!models/*.xml
+!facial-core/src/main/resources/models/*.onnx
+!facial-core/src/main/resources/models/*.xml
+
+# ==========================================
+# IDE & Code Editors
+# ==========================================
+.vscode/
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+.settings/
+.project
+.classpath
+.factorypath
+*.sublime-workspace
+*.sublime-project
+.history/
+.redhat/
+
+# ==========================================
+# Operating System Files
+# ==========================================
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+# Linux
+*~
+.directory
+.Trash-*
+
+# ==========================================
+# Logs & Temporary Files
+# ==========================================
+*.log
+logs/
+temp/
+tmp/
+effective-pom-*.log
+hs_err_pid*.log
+replay_pid*.log
+.attach_pid*

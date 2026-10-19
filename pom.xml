@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.facial.recognition</groupId>
+    <artifactId>facial-recognition-platform</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>Facial Recognition and Biometric Detection Platform</name>
+    <description>Advanced Face Detection and Recognition Platform in Java using OpenCV, JavaCV, DNN, DL4J, Spring Boot and Kafka</description>
+
+    <modules>
+        <module>facial-core</module>
+        <module>facial-dl4j</module>
+        <module>facial-persistence</module>
+        <module>facial-messaging</module>
+        <module>facial-api</module>
+        <module>facial-desktop</module>
+    </modules>
+
+    <properties>
+        <java.version>25</java.version>
+        <maven.compiler.source>25</maven.compiler.source>
+        <maven.compiler.target>25</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!-- Component Versions -->
+        <javacv.version>1.5.11</javacv.version>
+        <opencv.version>4.10.0-1.5.11</opencv.version>
+        <dl4j.version>1.0.0-M2.1</dl4j.version>
+        <spring.boot.version>3.5.16</spring.boot.version>
+        <spring.kafka.version>3.2.4</spring.kafka.version>
+        <springdoc.openapi.version>2.6.0</springdoc.openapi.version>
+        <h2.version>2.3.232</h2.version>
+        <lombok.version>1.18.40</lombok.version>
+        <junit.jupiter.version>5.10.3</junit.jupiter.version>
+        <assertj.version>3.26.3</assertj.version>
+        <slf4j.version>2.0.16</slf4j.version>
+        <logback.version>1.5.8</logback.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Spring Boot Dependency Management -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.21.7</version>
+            </dependency>
+
+            <!-- Internal Modules -->
+            <dependency>
+                <groupId>com.facial.recognition</groupId>
+                <artifactId>facial-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.facial.recognition</groupId>
+                <artifactId>facial-dl4j</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.facial.recognition</groupId>
+                <artifactId>facial-persistence</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.facial.recognition</groupId>
+                <artifactId>facial-messaging</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- JavaCV & OpenCV -->
+            <dependency>
+                <groupId>org.bytedeco</groupId>
+                <artifactId>javacv</artifactId>
+                <version>${javacv.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.bytedeco</groupId>
+                <artifactId>javacv-platform</artifactId>
+                <version>${javacv.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.bytedeco</groupId>
+                <artifactId>opencv-platform</artifactId>
+                <version>${opencv.version}</version>
+            </dependency>
+
+            <!-- DeepLearning4J & ND4J -->
+            <dependency>
+                <groupId>org.deeplearning4j</groupId>
+                <artifactId>deeplearning4j-core</artifactId>
+                <version>${dl4j.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.bytedeco</groupId>
+                        <artifactId>opencv</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.deeplearning4j</groupId>
+                <artifactId>deeplearning4j-nn</artifactId>
+                <version>${dl4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.nd4j</groupId>
+                <artifactId>nd4j-native-platform</artifactId>
+                <version>${dl4j.version}</version>
+            </dependency>
+
+            <!-- OpenAPI Documentation -->
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>${springdoc.openapi.version}</version>
+            </dependency>
+
+            <!-- Lombok -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.13.0</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                        <annotationProcessorPaths>
+                            <path>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                                <version>${lombok.version}</version>
+                            </path>
+                        </annotationProcessorPaths>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.2.5</version>
+                    <configuration>
+                        <environmentVariables>
+                            <LD_LIBRARY_PATH>/home/carlos-44/tools/lib/gtk2/usr/lib/x86_64-linux-gnu</LD_LIBRARY_PATH>
+                        </environmentVariables>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring.boot.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>
