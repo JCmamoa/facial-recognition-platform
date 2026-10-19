@@ -53,10 +53,15 @@ public class YuNetFaceDetector implements FaceDetector {
     }
 
     private static String resolveDefaultModelPath() {
-        String customPath = System.getProperty("facial.yunet.model.path", "/home/carlos-44/models/face_detection_yunet.onnx");
-        File file = new File(customPath);
-        if (file.exists()) {
-            return file.getAbsolutePath();
+        String customPath = System.getProperty("facial.yunet.model.path");
+        if (customPath == null || customPath.isBlank()) {
+            customPath = System.getenv("FACIAL_YUNET_MODEL_PATH");
+        }
+        if (customPath != null && !customPath.isBlank()) {
+            File file = new File(customPath);
+            if (file.isFile()) {
+                return file.getAbsolutePath();
+            }
         }
         // Try extracting from classpath resources
         try (InputStream in = YuNetFaceDetector.class.getResourceAsStream("/models/face_detection_yunet.onnx")) {
@@ -69,7 +74,7 @@ public class YuNetFaceDetector implements FaceDetector {
         } catch (Exception e) {
             log.warn("Failed to extract default YuNet model from classpath: {}", e.getMessage());
         }
-        return customPath;
+        return customPath == null || customPath.isBlank() ? "models/face_detection_yunet.onnx" : customPath;
     }
 
     private synchronized void initDetector() {

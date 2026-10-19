@@ -1,12 +1,12 @@
 # 🛡️ Plataforma Avançada de Detecção e Reconhecimento Facial em Java
 
-[![Java](https://img.shields.io/badge/Java-21%20LTS-orange.svg)](https://www.oracle.com/java/technologies/downloads/#java21)
-[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.3.4-brightgreen.svg)](https://spring.io/projects/spring-boot)
+[![Java](https://img.shields.io/badge/Java-25%20LTS-orange.svg)](https://www.oracle.com/java/technologies/downloads/#java25)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.16-brightgreen.svg)](https://spring.io/projects/spring-boot)
 [![OpenCV](https://img.shields.io/badge/OpenCV-4.10%20%7C%20JavaCV-blue.svg)](https://opencv.org/)
 [![DeepLearning4J](https://img.shields.io/badge/DeepLearning4J-1.0.0--M2.1-red.svg)](https://deeplearning4j.konduit.ai/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
-Sistema corporativo de alto desempenho para **visão computacional**, **inteligência artificial** e **biometria facial** desenvolvido em **Java 21 LTS**, integrando redes neurais profundas pré-treinadas (**DNN YuNet** e **DNN SFace**), computação tensorial com **DeepLearning4J (ND4J)**, microsserviço REST com **Spring Boot 3**, mensageria com **Apache Kafka** e interface gráfica moderna para monitoramento em tempo real com **Java Swing (FlatLaf)**.
+Sistema corporativo de alto desempenho para **visão computacional**, **inteligência artificial** e **biometria facial** desenvolvido em **Java 25 LTS**, integrando redes neurais profundas pré-treinadas (**DNN YuNet** e **DNN SFace**), computação tensorial com **DeepLearning4J (ND4J)**, microsserviço REST com **Spring Boot 3**, mensageria com **Apache Kafka** e interface gráfica moderna para monitoramento em tempo real com **Java Swing (FlatLaf)**.
 
 ---
 
@@ -61,7 +61,7 @@ flowchart TD
 
 ## 🚀 Tecnologias e Modelos de IA
 
-1. **Java 21 LTS**: Recursos modernos como Record Patterns, Sequenced Collections e Virtual Threads.
+1. **Java 25 LTS**: Recursos modernos como Record Patterns, Sequenced Collections e Virtual Threads.
 2. **OpenCV 4.10 & JavaCV 1.5.11**: Bindings nativos de alta performance para captura contínua (`VideoCapture`, `FFmpegFrameGrabber`), conversão de espaços de cor (`BGR2GRAY`, `YCrCb`, `Lab`), equalização adaptativa de contraste (**CLAHE**) e transformações afins.
 3. **OpenCV DNN Face Detector (YuNet)**:
    - Rede neural convolucional leve para detecção de rostos sob ângulos extremos e oclusões parciais.
@@ -74,7 +74,7 @@ flowchart TD
 6. **Métricas Biométricas**:
    - **Similaridade de Cosseno**: $\cos(\theta) = \frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{u}\| \|\mathbf{v}\|}$ (Limiar padrão: `0.40`).
    - **Distância Euclidiana ($L_2$)**: $\|\mathbf{u} - \mathbf{v}\|_2$ (Limiar padrão: `1.128`).
-7. **Spring Boot 3.3.4**: Arquitetura REST corporativa, Swagger UI OpenAPI 3, suporte a multipart uploads e streaming MJPEG contínuo.
+7. **Spring Boot 3.5.16**: Arquitetura REST corporativa, Swagger UI OpenAPI 3, suporte a multipart uploads e streaming MJPEG contínuo.
 8. **Desktop Swing & FlatLaf**: Interface escura moderna com renderização gráfica em tempo real.
 
 ---
@@ -82,7 +82,7 @@ flowchart TD
 ## 💻 Instruções de Instalação e Execução Multiplataforma
 
 ### 📋 Pré-requisitos Comuns (Todos os Sistemas Operacionais)
-- **JDK 21 LTS** instalado (Eclipse Temurin, OpenJDK ou Oracle JDK).
+- **JDK 25 LTS** instalado (Eclipse Temurin, OpenJDK ou Oracle JDK).
 - **Apache Maven 3.9+** instalado e adicionado ao `PATH`.
 - **Câmera/Webcam** (opcional, para streaming ao vivo ou interface desktop).
 
@@ -94,13 +94,13 @@ flowchart TD
 ```bash
 # Ubuntu / Debian
 sudo apt update
-sudo apt install -y openjdk-21-jdk maven libgtk2.0-0 v4l-utils
+sudo apt install -y openjdk-25-jdk maven libgtk2.0-0 v4l-utils
 
 # Fedora
-sudo dnf install -y java-21-openjdk-devel maven gtk2
+sudo dnf install -y java-25-openjdk-devel maven gtk2
 
 # Arch Linux
-sudo pacman -S jdk21-openjdk maven gtk2
+sudo pacman -S jdk25-openjdk maven gtk2
 ```
 
 #### Compilação do Projeto:
@@ -124,7 +124,7 @@ chmod +x scripts/*.sh
 ### 🪟 2. Windows 10 / 11
 
 #### Pré-requisitos no Windows:
-1. Instale o [JDK 21 LTS (Temurin)](https://adoptium.net/).
+1. Instale o [JDK 25 LTS (Temurin)](https://adoptium.net/).
 2. Instale o [Apache Maven](https://maven.apache.org/download.cgi) e adicione a pasta `bin` às Variáveis de Ambiente (`PATH`).
 3. Instale o [Visual C++ Redistributable 2015-2022 (x64)](https://aka.ms/vs/17/release/vc_redist.x64.exe) (necessário para as DLLs nativas do OpenCV e ND4J).
 
@@ -159,10 +159,10 @@ scripts\start-desktop.bat
 #### Instalação via Homebrew:
 ```bash
 brew update
-brew install openjdk@21 maven
+brew install openjdk@25 maven
 
-# Vincular o JDK 21 ao sistema
-sudo ln -sfn /opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-21.jdk
+# Vincular o JDK 25 ao sistema
+sudo ln -sfn /opt/homebrew/opt/openjdk@25/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-25.jdk
 ```
 
 #### Compilação do Projeto:

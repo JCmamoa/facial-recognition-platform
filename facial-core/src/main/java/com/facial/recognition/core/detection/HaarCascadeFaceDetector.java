@@ -41,10 +41,15 @@ public class HaarCascadeFaceDetector implements FaceDetector {
     }
 
     private static String resolveDefaultCascadePath() {
-        String customPath = System.getProperty("facial.haarcascade.path", "/home/carlos-44/models/haarcascade_frontalface_alt2.xml");
-        File file = new File(customPath);
-        if (file.exists()) {
-            return file.getAbsolutePath();
+        String customPath = System.getProperty("facial.haarcascade.path");
+        if (customPath == null || customPath.isBlank()) {
+            customPath = System.getenv("FACIAL_HAARCASCADE_PATH");
+        }
+        if (customPath != null && !customPath.isBlank()) {
+            File file = new File(customPath);
+            if (file.isFile()) {
+                return file.getAbsolutePath();
+            }
         }
         try (InputStream in = HaarCascadeFaceDetector.class.getResourceAsStream("/models/haarcascade_frontalface_alt2.xml")) {
             if (in != null) {
@@ -56,7 +61,9 @@ public class HaarCascadeFaceDetector implements FaceDetector {
         } catch (Exception e) {
             log.warn("Failed to extract default Haar cascade from classpath: {}", e.getMessage());
         }
-        return customPath;
+        return customPath == null || customPath.isBlank()
+                ? "models/haarcascade_frontalface_alt2.xml"
+                : customPath;
     }
 
     private synchronized void initClassifier() {
